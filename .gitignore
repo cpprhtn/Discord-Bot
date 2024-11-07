@@ -1,0 +1,27 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+.venv/
+venv/
+
+# IDE/Editor configuration
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs and databases
+*.log
+*.db
+
+# Environment files
+.env
+
+# macOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
