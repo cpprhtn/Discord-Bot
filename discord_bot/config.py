@@ -5,6 +5,9 @@ load_dotenv()
 
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 PREFIX = os.getenv("COMMAND_PREFIX") 
+SERVERS_ID = os.getenv("SERVERS_ID")
+
+GUILD_ID = [int(x) for x in SERVERS_ID.split(',')] if SERVERS_ID else []
 
 EXTENSIONS = [
 	f"discord_bot.cogs.{manager}.{cog[:-3]}"
