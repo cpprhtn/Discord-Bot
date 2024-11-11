@@ -1,10 +1,10 @@
 import discord
 from discord.ext import commands
-from discord.commands import slash_command, Option
+from discord.commands import slash_command
 
 from discord_bot.config import GUILD_ID
 
-class CommandManager(commands.Cog):
+class RoleManager(commands.Cog):
 	def __init__(self, bot):
 		self.bot = bot
 
@@ -33,5 +33,5 @@ class CommandManager(commands.Cog):
 			await ctx.respond(f"{member.name}님으로부터 {role.name} 역할을 제거했습니다.")
 
 def setup(bot):
-	bot.add_cog(CommandManager(bot))
-	print("CommandManager Cog is loaded")
+	bot.add_cog(RoleManager(bot))
+	print("RoleManager Cog is loaded")
