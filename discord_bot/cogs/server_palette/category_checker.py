@@ -40,8 +40,7 @@ class ServerManager(commands.Cog):
 
                 button.callback = callback
                 view.add_item(button)
-
-            await ctx.send("반갑습니다. 구독하고 싶은 카테고리를 선택하세요😉:", view=view)
+        await ctx.send("반갑습니다. 구독하고 싶은 카테고리를 선택하세요😉:", view=view)
 
 
 def setup(bot):
