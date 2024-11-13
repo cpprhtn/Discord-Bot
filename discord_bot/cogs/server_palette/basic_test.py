@@ -3,10 +3,12 @@ from discord.ext import commands
 from discord_bot.config import GUILD_ID
 from discord.commands import slash_command
 
+
 class BasicTest(commands.Cog):
     """
     기본적인 서버 테스트 명령어 모음
     """
+
     def __init__(self, bot):
         self.bot = bot
 
@@ -30,6 +32,7 @@ class BasicTest(commands.Cog):
         if guild.icon:
             embed.set_thumbnail(url=guild.icon.url)
         await interaction.response.send_message(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(BasicTest(bot))

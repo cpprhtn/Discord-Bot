@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord.commands import slash_command
 from datetime import datetime
 
+
 class StudyManager(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -14,31 +15,36 @@ class StudyManager(commands.Cog):
         season = season.lower()
         year_short = datetime.now().strftime("%y")
         year_long = datetime.now().strftime("%Y")
-        
+
         role_name = f"{year_short}-{season}-{study_name}"
         role = discord.utils.get(guild.roles, name=role_name)
+
+        # 역할이 이미 있는 경우, 이미 존재하는 메시지를 반환
         if role:
             await ctx.send(f"'{role_name}' 역할이 이미 존재합니다.")
             return
 
-        category = discord.utils.get(guild.categories, name=category_name) if category_name else None
-        if not category:
-            category = await guild.create_category(name=category_name or "스터디")
+        category = discord.utils.get(
+            guild.categories, name=category_name) if category_name else None
 
-        try:
-            role = await guild.create_role(name=role_name)
-            overwrites = {
-                guild.default_role: discord.PermissionOverwrite(view_channel=False),
-                role: discord.PermissionOverwrite(view_channel=True),
-            }
+        role = await guild.create_role(name=role_name)
+        overwrites = {
+            guild.default_role: discord.PermissionOverwrite(view_channel=False),
+            role: discord.PermissionOverwrite(view_channel=True),
+        }
 
-            study_category = await guild.create_category(name=role_name, overwrites=overwrites)
+        if category:
+            await guild.create_text_channel(f"{study_name}-채팅", category=category, overwrites=overwrites)
+            await guild.create_voice_channel(f"{study_name}-음성", category=category, overwrites=overwrites)
+        else:
+            study_category = await guild.create_category(name=category_name, overwrites=overwrites)
+            role = await guild.create_role(name=category_name)
+            await guild.create_text_channel("자유", category=category)
+            await guild.create_voice_channel("라운지", category=category)
             await guild.create_text_channel(f"{study_name}-채팅", category=study_category)
             await guild.create_voice_channel(f"{study_name}-음성", category=study_category)
 
-            await ctx.send(f"'{role_name}' 스터디 카테고리와 역할이 생성되었습니다.")
-        except discord.DiscordException as e:
-            await ctx.send(f"오류가 발생했습니다: {str(e)}")
+        await ctx.send(f"'{role_name}' 스터디 역할과 채널이 생성되었습니다.")
 
     @slash_command(description="Delete study room and migrate role members")
     @commands.has_permissions(administrator=True)
@@ -71,6 +77,7 @@ class StudyManager(commands.Cog):
 
         await role.delete()
         await ctx.send(f"'{role_name}' 스터디 룸과 역할이 삭제되고, 멤버가 '{season_role_name}' 역할로 이동되었습니다.")
+
 
 def setup(bot):
     bot.add_cog(StudyManager(bot))

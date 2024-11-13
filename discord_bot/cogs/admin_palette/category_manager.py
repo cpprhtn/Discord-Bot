@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord_bot.config import GUILD_ID
 from discord.commands import slash_command
 
+
 class CategoryManager(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -13,14 +14,18 @@ class CategoryManager(commands.Cog):
         embed = discord.Embed(title="카테고리 목록", color=discord.Color.blue())
         if ctx.guild.categories:
             for category in ctx.guild.categories:
-                embed.add_field(name=category.name, value=f"카테고리 ID: {category.id}", inline=False)
-            
+                embed.add_field(name=category.name, value=f"카테고리 ID: {
+                                category.id}", inline=False)
+
             if len(embed.fields) > 25:
-                embeds = [discord.Embed(title="카테고리 목록", color=discord.Color.blue())]
+                embeds = [discord.Embed(
+                    title="카테고리 목록", color=discord.Color.blue())]
                 for i, field in enumerate(embed.fields):
                     if i % 25 == 0 and i != 0:
-                        embeds.append(discord.Embed(title="카테고리 목록", color=discord.Color.blue()))
-                    embeds[-1].add_field(name=field.name, value=field.value, inline=False)
+                        embeds.append(discord.Embed(
+                            title="카테고리 목록", color=discord.Color.blue()))
+                    embeds[-1].add_field(name=field.name,
+                                         value=field.value, inline=False)
                 for page in embeds:
                     await ctx.send(embed=page)
             else:
@@ -78,6 +83,7 @@ class CategoryManager(commands.Cog):
             await ctx.send(f"'{category_name}' 카테고리와 포함된 모든 채널, 역할이 삭제되었습니다.")
         except discord.DiscordException as e:
             await ctx.send(f"오류가 발생했습니다: {str(e)}")
+
 
 def setup(bot):
     bot.add_cog(CategoryManager(bot))
