@@ -12,9 +12,10 @@ class StudyManager(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def create_study(self, ctx, study_name: str, season: str, category_name: str = None):
         guild = ctx.guild
-        season = season.lower()
+        study_name = study_name.upper()
+        season = season.upper()
+        category_name = category_name.upper()
         year_short = datetime.now().strftime("%y")
-        year_long = datetime.now().strftime("%Y")
 
         role_name = f"{year_short}-{season}-{study_name}"
         role = discord.utils.get(guild.roles, name=role_name)
@@ -50,7 +51,7 @@ class StudyManager(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def delete_study(self, ctx, study_name: str, season: str):
         guild = ctx.guild
-        season = season.lower()
+        season = season.upper()
         year_short = datetime.now().strftime("%y")
         year_long = datetime.now().strftime("%Y")
 

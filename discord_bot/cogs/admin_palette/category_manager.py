@@ -64,6 +64,7 @@ class CategoryManager(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def delete_category(self, ctx, category_name: str):
         guild = ctx.guild
+        category_name = category_name.upper()
         category = discord.utils.get(guild.categories, name=category_name)
 
         if category is None:
