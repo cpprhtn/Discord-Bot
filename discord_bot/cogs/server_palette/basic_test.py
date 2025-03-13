@@ -1,7 +1,8 @@
 import discord
-from discord.ext import commands
-from discord_bot.config import GUILD_ID
 from discord.commands import slash_command
+from discord.ext import commands
+
+from discord_bot.config import GUILD_ID
 
 
 class BasicTest(commands.Cog):
@@ -12,7 +13,9 @@ class BasicTest(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @slash_command(guild_ids=GUILD_ID, description="Ping the server to check latency")
+    @slash_command(
+        guild_ids=GUILD_ID, description="Ping the server to check latency"
+    )
     async def ping(self, interaction):
         """
         서버의 응답 시간을 확인합니다.
