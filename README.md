@@ -43,7 +43,7 @@
 | `/proof_promo <attachment>` | 엠베서더 프로모션을 증명하는 이미지를 업로드합니다. |
 | `/monthly_ranking`          | 엠베서더의 월간 랭킹을 표시합니다.                  |
 
-### GeekNews 뉴스 매니저 (`cogs/server_palette/news_manager.py`)
+### GeekNews 관리자 (`cogs/server_palette/news_manager.py`)
 
 | 명령어            | 설명                                                         |
 | ----------------- | ------------------------------------------------------------ |
