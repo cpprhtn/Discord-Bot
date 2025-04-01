@@ -24,7 +24,7 @@ class NewsManager(commands.Cog):
         self.bot = bot
 
     @slash_command(guild_ids=GUILD_ID, description="뉴스 링크를 저장합니다.")
-    async def news_add(self, ctx, url: Option(str, "저장할 뉴스 링크")):
+    async def news_add(self, ctx, url: Option(str, description="저장할 뉴스 링크")):
         cursor.execute("INSERT INTO news (url) VALUES (?)", (url,))
         conn.commit()
         await ctx.respond(f"링크가 저장되었습니다:\n{url}")
