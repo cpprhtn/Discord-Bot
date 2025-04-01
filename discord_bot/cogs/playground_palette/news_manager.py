@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from discord.ext import commands
-from discord.commands import slash_command, Option
+from discord.commands import slash_command
 from discord_bot.config import GUILD_ID
 
 os.makedirs("./db", exist_ok=True)
@@ -24,7 +24,7 @@ class NewsManager(commands.Cog):
         self.bot = bot
 
     @slash_command(guild_ids=GUILD_ID, description="뉴스 링크를 저장합니다.")
-    async def news_add(self, ctx, url: Option(str, description="저장할 뉴스 링크")):
+    async def news_add(self, ctx, url):
         cursor.execute("INSERT INTO news (url) VALUES (?)", (url,))
         conn.commit()
         await ctx.respond(f"링크가 저장되었습니다:\n{url}")
