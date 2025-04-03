@@ -50,7 +50,7 @@ class NewsManager(commands.Cog):
             await ctx.respond(f"**저장된 뉴스 목록:**\n{message}")
 
     @slash_command(guild_ids=GUILD_ID, description="저장된 뉴스 링크를 모두 삭제합니다.")
-    @commands.has_any_role("운영진", "긱뉴스") # 임의명 긱뉴스 역할에도 권한 할당.
+    @commands.has_any_role("운영진", "긱뉴스")  # 임의명 긱뉴스 역할에도 권한 할당.
     async def news_rm(self, ctx):
         cursor.execute("DELETE FROM news")
         conn.commit()
