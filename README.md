@@ -92,7 +92,7 @@ python -m discord_bot
 
 ## 실행 방법 (`uv` 사용)
 
-0. uv 설치
+1. uv 설치
 
 ```bash
 # With pip.
@@ -102,31 +102,35 @@ pip install uv
 brew install uv
 ```
 
-1. 저장소 클론
+2. 저장소 클론
 
 ```bash
 git clone https://github.com/SUSC-KR/Discord-Bot.git
 cd Discord-Bot
 ```
 
-2. 가상환경 venv 추가 및 의존성 설치
+3. 가상환경 venv 추가 및 의존성 설치
 
 ```bash
 uv sync
 ```
 
-3. 봇 실행
+4. 봇 실행
 
 ```bash
 uv run -m discord_bot
 ```
 
-4. ruff 검사
-```
-# 검사
-uv run ruff check ./discord_bot/
+5. ruff 검사
+```bash
+# 코드 스타일 및 린팅 검사
+ruff check ./discord_bot
+
 # 오류 자동 수정
-uv run ruff check [path] --fix
+ruff check ./discord_bot --fix
+
+# 코드 자동 포맷
+ruff format ./discord_bot
 ```
 
 ## 라이선스
