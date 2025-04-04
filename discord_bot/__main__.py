@@ -6,9 +6,7 @@ import discord
 from discord_bot.bot import run_bot
 from discord_bot.config import EXTENSIONS
 
-sys.path.insert(
-    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "discord_bot"))
-)
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "discord_bot")))
 
 intents = discord.Intents.all()
 
