@@ -1,11 +1,11 @@
+import csv
 import os
 import random
 import re
-import csv
 
 import discord
-from discord.ext import commands
 from discord.commands import slash_command
+from discord.ext import commands
 
 
 class TechInterview(commands.Cog):
